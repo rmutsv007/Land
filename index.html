@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -34,8 +33,8 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-search.js"></script>
-        <script src="data/Landland_1.js"></script>
+        <script src="data/__1.js"></script>
+        <script src="data/Land_2.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -51,11 +50,10 @@
                 fillOpacity: 1
               });
             }
-            highlightLayer.openPopup();
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[7.752147336003838,99.97148348445849],[7.762019708862894,99.98618417052164]]);
+        }).fitBounds([[7.740604661769546,99.94263877930221],[7.78009334100155,100.00144150366157]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -106,7 +104,7 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
-        function pop_Landland_1(feature, layer) {
+        function pop___1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -114,12 +112,54 @@
                             e.target._eventParents[i].resetStyle(e.target);
                         }
                     }
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style___1_0() {
+            return {
+                pane: 'pane___1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(178,223,138,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane___1');
+        map.getPane('pane___1').style.zIndex = 401;
+        map.getPane('pane___1').style['mix-blend-mode'] = 'normal';
+        var layer___1 = new L.geoJson(json___1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json___1',
+            layerName: 'layer___1',
+            pane: 'pane___1',
+            onEachFeature: pop___1,
+            style: style___1_0,
+        });
+        bounds_group.addLayer(layer___1);
+        map.addLayer(layer___1);
+        function pop_Land_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
                     }
                 },
                 mouseover: highlightFeature,
@@ -213,9 +253,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Landland_1_0() {
+        function style_Land_2_0() {
             return {
-                pane: 'pane_Landland_1',
+                pane: 'pane_Land_2',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -228,50 +268,43 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Landland_1');
-        map.getPane('pane_Landland_1').style.zIndex = 401;
-        map.getPane('pane_Landland_1').style['mix-blend-mode'] = 'normal';
-        var layer_Landland_1 = new L.geoJson(json_Landland_1, {
+        map.createPane('pane_Land_2');
+        map.getPane('pane_Land_2').style.zIndex = 402;
+        map.getPane('pane_Land_2').style['mix-blend-mode'] = 'normal';
+        var layer_Land_2 = new L.geoJson(json_Land_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Landland_1',
-            layerName: 'layer_Landland_1',
-            pane: 'pane_Landland_1',
-            onEachFeature: pop_Landland_1,
-            style: style_Landland_1_0,
+            dataVar: 'json_Land_2',
+            layerName: 'layer_Land_2',
+            pane: 'pane_Land_2',
+            onEachFeature: pop_Land_2,
+            style: style_Land_2_0,
         });
-        bounds_group.addLayer(layer_Landland_1);
-        map.addLayer(layer_Landland_1);
+        bounds_group.addLayer(layer_Land_2);
+        map.addLayer(layer_Land_2);
         setBounds();
         var i = 0;
-        layer_Landland_1.eachLayer(function(layer) {
+        layer_Land_2.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['เลขที่'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['เลขที่']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Landland_1'});
+            layer.bindTooltip((layer.feature.properties['เลขที่'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['เลขที่']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Land_2'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        map.addControl(new L.Control.Search({
-            layer: layer_Landland_1,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'เลขที่'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
-        resetLabels([layer_Landland_1]);
+        resetLabels([layer_Land_2]);
         map.on("zoomend", function(){
-            resetLabels([layer_Landland_1]);
+            resetLabels([layer_Land_2]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_Landland_1]);
+            resetLabels([layer_Land_2]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_Landland_1]);
+            resetLabels([layer_Land_2]);
         });
         </script>
     </body>
