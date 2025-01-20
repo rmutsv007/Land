@@ -116,6 +116,42 @@
                 mouseover: highlightFeature,
             });
             var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">nrf_code</th>\
+                        <td>' + (feature.properties['nrf_code'] !== null ? autolinker.link(feature.properties['nrf_code'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">fr_name</th>\
+                        <td>' + (feature.properties['fr_name'] !== null ? autolinker.link(feature.properties['fr_name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">province</th>\
+                        <td>' + (feature.properties['province'] !== null ? autolinker.link(feature.properties['province'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">area_rai</th>\
+                        <td>' + (feature.properties['area_rai'] !== null ? autolinker.link(feature.properties['area_rai'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">rai_gis</th>\
+                        <td>' + (feature.properties['rai_gis'] !== null ? autolinker.link(feature.properties['rai_gis'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">สจป</th>\
+                        <td>' + (feature.properties['สจป'] !== null ? autolinker.link(feature.properties['สจป'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ภาค</th>\
+                        <td>' + (feature.properties['ภาค'] !== null ? autolinker.link(feature.properties['ภาค'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">typ</th>\
+                        <td>' + (feature.properties['typ'] !== null ? autolinker.link(feature.properties['typ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
